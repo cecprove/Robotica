@@ -26,12 +26,12 @@ joint_lim=[deg2rad(-90) deg2rad(90);
 %radianti
 
 %Traiettoria di esempio nello spazio operativo
-p=[ 28 28;
-    29 29;
-    30 30;
-    31 31;
-    32 31;
-    33 33];
+p=[ 38 38;
+    39 39;
+    40 40;
+    41 41;
+    42 42;
+    43 43];
 
 theta=[0.1;
     0.2;
@@ -102,7 +102,7 @@ for a1=link_lim(1,1):resolution:link_lim(1,2)
                     links_sum=[links_sum;a1+a2+a3+a4];
                     %& mi permettono di trovare il massimo delle combinazioni
                     %dei tre link
-                    max_1234=max(abs(a1-(a1+a2+a3+a4)/4),abs(a2-(a1+a2+a3+a4)/4),abs(a3-(a1+a2+a3+a4)/4),abs(a4-(a1+a2+a3+a4)/4));
+                    max_1234=max([abs(a1-(a1+a2+a3+a4)/4),abs(a2-(a1+a2+a3+a4)/4),abs(a3-(a1+a2+a3+a4)/4),abs(a4-(a1+a2+a3+a4)/4)]);
 
                     links_diff=[links_diff;max_1234];
                 end
