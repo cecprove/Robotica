@@ -83,8 +83,8 @@ for a1=link_lim(1,1):resolution:link_lim(1,2)
         for a3=link_lim(3,1):resolution:link_lim(3,2)
             for a4=link_lim(4,1):resolution:link_lim(4,2)
                 progress = conta_iterazioni/iterazioni_tot;
-                waitbar(progress, barra, sprintf("Running %.1f%%",progress));
-                
+                waitbar(progress, barra, sprintf("Running %.1f%%", progress * 100));
+                conta_iterazioni = conta_iterazioni + 1;
                 check=check_links_dimensions_4Dof(p,theta,a1,a2,a3,a4,joint_lim);
             
 
