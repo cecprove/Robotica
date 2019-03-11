@@ -113,7 +113,7 @@ for a1=link_lim(1,1):resolution:link_lim(1,2)
         end
     end
 end
-
+close(barra);
 %Vengono applicate delle funzioni di costo
 %& tipo deviazione stadard
 links_sum=links_sum-mean(links_sum);
