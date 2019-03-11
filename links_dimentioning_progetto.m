@@ -77,7 +77,7 @@ for k = 1 : 4
     iterazioni_tot = iterazioni_tot * iterazioni_k;
 end
 
-barra = waitbar(0, 'Name', 'Barra di caricamento');
+barra = waitbar(0,'please wait', 'Name', 'Barra di caricamento');
 for a1=link_lim(1,1):resolution:link_lim(1,2)
     for a2=link_lim(2,1):resolution:link_lim(2,2)
         for a3=link_lim(3,1):resolution:link_lim(3,2)
