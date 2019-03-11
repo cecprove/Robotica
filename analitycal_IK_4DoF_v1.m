@@ -1,4 +1,4 @@
-function Q=analitycal_IK_4DoF(p,theta,a1,a2,a3,a4)
+function Q=analitycal_IK_4DoF_v1(p,theta,a1,a2,a3,a4)
 %& per passara dallo spazio operativo a quello dei giunti
 
 %Applicazione del problema cinematico inverso (Noti p e theta->si vuole ricavare Q)
