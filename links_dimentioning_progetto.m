@@ -47,7 +47,7 @@ theta=[0.1;
 link_lim=[1 20;
     1 20;
     1 20; 
-    1 20];
+    1 20];% 1 20
 %& Scelgo le lunghezze massime e minime dei miei link . Queste sono fissate
 %( le lunghezze sono in cm) Dobbiamo lascirlse cosi come sono
 
@@ -75,7 +75,9 @@ for a1=link_lim(1,1):resolution:link_lim(1,2)
         for a3=link_lim(3,1):resolution:link_lim(3,2)
             for a4=link_lim(4,1):resolution:link_lim(4,2)
                 
-                check=check_links_dimensions_4DoF(p,theta,a1,a2,a3,a4,joint_lim);
+                
+                
+                check=check_links_dimensions_4Dof(p,theta,a1,a2,a3,a4,joint_lim);
             
 
                 %Ciclo if
