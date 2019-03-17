@@ -77,15 +77,18 @@ for k = 1 : 4
     iterazioni_tot = iterazioni_tot * iterazioni_k;
 end
 
+resolution_q=deg2rad(15);
+
 barra = waitbar(0,'please wait', 'Name', 'Barra di caricamento');
 for a1=link_lim(1,1):resolution:link_lim(1,2)
     for a2=link_lim(2,1):resolution:link_lim(2,2)
         for a3=link_lim(3,1):resolution:link_lim(3,2)
             for a4=link_lim(4,1):resolution:link_lim(4,2)
+                for q4=joint_lim(4,1):resolution_q:joint_lim(4,2)
                 progress = conta_iterazioni/iterazioni_tot;
                 waitbar(progress, barra, sprintf("Running %.1f%%", progress * 100));
                 conta_iterazioni = conta_iterazioni + 1;
-                check=check_links_dimensions_4Dof(p,theta,a1,a2,a3,a4,joint_lim);
+                check=check_links_dimensions_4Dof(p,theta,q4,a1,a2,a3,a4,joint_lim);
             
 
                 %Ciclo if
@@ -109,6 +112,7 @@ for a1=link_lim(1,1):resolution:link_lim(1,2)
                 %& c'è _ .Qui metto tutte le combinazioni che ho trovato anche
                 %quelle che non vanno bene
                 links_=[links_; a1, a2, a3, a4];
+                end
             end
         end
     end
