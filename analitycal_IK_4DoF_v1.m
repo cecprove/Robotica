@@ -1,9 +1,10 @@
-function Q=analitycal_IK_4DoF_v1(p,theta,a1,a2,a3,a4)
+function Q=analitycal_IK_4DoF_v1(p,theta,a1,a2,a3,a4,q4)
 %& per passara dallo spazio operativo a quello dei giunti
 
 %Applicazione del problema cinematico inverso (Noti p e theta->si vuole ricavare Q)
 %& guarda esempio del manipolatore a 3gdl fatto in classe
-q4= deg2rad(7);
+%q4= deg2rad(7);
+
 pw_x=p(1)-a3*cos(theta-q4)-a4*cos(theta);
 pw_y=p(2)-a3*sin(theta-q4)-a4*sin(theta);
 
