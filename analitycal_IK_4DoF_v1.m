@@ -23,8 +23,9 @@ if (isreal(s1) && isreal(s2) && isreal(c1) && isreal(c2))
     %& ho una configurazione di angoli noti fi,theta e voglio
     %ricavare theta 1,2,3 ossia gli angoli di giunto. Se conosco tutto devo
     %riapplicare la cinematica diretta per vedere se la posizione che ho
-    %trovato siano quelle desiderati poichè questi algoritmi possono creare
-    %degli errori e quindi impongo che la differenza sia inferiore a e-3
+    %trovato è quella desiderata poichè questi algoritmi possono creare
+    %degli errori; quindi impongo che la differenza tra la posizione calcolata e quella desiderata sia inferiore a 10^(-3).
+    % se cosi non fosse scarto quella combinazione
     X = direct_kinematics_4DoF(q1,q2,q3,q4,a1,a2,a3,a4);%viene applicata la cinematica diretta
     
     if(abs(X-[p(1);p(2);theta])<1e-3)
