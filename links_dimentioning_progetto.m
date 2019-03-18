@@ -39,9 +39,8 @@ theta=[0.1;
     0.4;
     0.5;
     0.6];
-%& in questo caso e anche nel nostro siamo nel piano ma in questo caso
-%abbiamo 3gdl qindi abbiamo un vettore che contiene le x e le y ( le due
-%colonne) per ogni istante di tempo e poi per l'orientamento abbiamo theta
+%& Siamo nel piano quindi abbiamo un vettore che contiene le x e le y ( le due
+%colonne di p) per ogni istante di tempo e poi per l'orientamento abbiamo theta
 
 %Grandezza minima/massima dei link
 link_lim=[1 20;
@@ -49,15 +48,15 @@ link_lim=[1 20;
     1 20; 
     1 20];% 1 20
 %& Scelgo le lunghezze massime e minime dei miei link . Queste sono fissate
-%( le lunghezze sono in cm) Dobbiamo lascirlse cosi come sono
+%( le lunghezze sono in cm) Dobbiamo lasciarle cosi come sono.
 
 %Range di variazione dei link nel metodo di ottimizzazione
-resolution=0.5;
+resolution=0.5; %& quindi scorro la lunghezza dei link con un passo di 0.5 cm
 %& corrisponde al valore minimo che l'algorimo andrà a testare in base al
 %workspace che ho. Se non va bene la combinazione va scartata. per
 %scegliere quale tra le varie combinazione utilizzo una funzione di costo
-%come ad esempio quella che mi fa risprmiare materiale di stampa quindi la
-%somma dei tre lonk è minima ma non basta es uno da 1cm e altri molto
+%come ad esempio quella che mi fa risparmiare materiale di stampa quindi la
+%somma dei tre link è minima ma non basta es uno da 1cm e altri molto
 %grandi--> sconsigliata. Quindi media dei tre link e poi vedo quanto ci si
 %discosta da questa media
 
@@ -77,7 +76,7 @@ for k = 1 : 4
     iterazioni_tot = iterazioni_tot * iterazioni_k;
 end
 
-resolution_q=deg2rad(15);
+resolution_q=deg2rad(15); %& facciamo variare anche q4 con un passo di 15°
 
 barra = waitbar(0,'please wait', 'Name', 'Barra di caricamento');
 for a1=link_lim(1,1):resolution:link_lim(1,2)
@@ -85,16 +84,18 @@ for a1=link_lim(1,1):resolution:link_lim(1,2)
         for a3=link_lim(3,1):resolution:link_lim(3,2)
             for a4=link_lim(4,1):resolution:link_lim(4,2)
                 for q4=joint_lim(4,1):resolution_q:joint_lim(4,2)
+                %& queste 3 righe seguenti servono per la barra di caricamento
                 progress = conta_iterazioni/iterazioni_tot;
                 waitbar(progress, barra, sprintf("Running %.1f%%", progress * 100));
                 conta_iterazioni = conta_iterazioni + 1;
+                
                 check=check_links_dimensions_4Dof(p,theta,q4,a1,a2,a3,a4,joint_lim);
             
 
                 %Ciclo if
-                %& se check è vero inserisco in link a1,a2,a3 e se voglio
+                %& se check è vero inserisco in link a1,a2,a3,a4 e se voglio
                 %conservare anche quelli precedenti (dove c'è il check vero)
-                %scrivo links=[links; a1...]
+                %scrivo links=[links; a1...] cosi non sovrascrivo quelli già calcolati
                 if(check)
                     links=[links; a1, a2, a3, a4];
                     %& devo poi realizzare quella funzione che mi va a
@@ -103,7 +104,7 @@ for a1=link_lim(1,1):resolution:link_lim(1,2)
                     %& prima funzione di costo è la somma dei link quindi creo
                     %una variabile contenente le somme di tutti i link
                     links_sum=[links_sum;a1+a2+a3+a4];
-                    %& mi permettono di trovare il massimo delle combinazioni
+                    %& trovo il massimo delle combinazioni
                     %dei tre link
                     max_1234=max([abs(a1-(a1+a2+a3+a4)/4),abs(a2-(a1+a2+a3+a4)/4),abs(a3-(a1+a2+a3+a4)/4),abs(a4-(a1+a2+a3+a4)/4)]);
 
