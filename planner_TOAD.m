@@ -60,8 +60,8 @@ if t<=tf %se ci troviamo ad un tempo inferiore di tf, dobbiamo pianificare
         XYd=(c1'+R*[r1*cos(s/r1) r1*sin(s/r1)]')'; %è la x desiderata
         XYddot=(R*[-sin(s/r1) cos(s/r1)]')';
 
-        phi_e=phi_i+(s_phi/norm(phi_i-phi_f))*(phi_f-phi_i); %è la phi desiderata
-        phi_et=(sdot_phi/norm(phi_i-phi_f))*(phi_f-phi_i);
+        phi_e=phi_i+(s_phi/norm(phi_f-phi_i))*(phi_f-phi_i); %è la phi desiderata
+        phi_et=(sdot_phi/norm(phi_f-phi_i))*(phi_f-phi_i);
     %     else %altrimenti rimango alla situazione finale, in realtà si può togliere questa parte
     %     XYd=pf;
     %     XYddot=[0;0];
@@ -88,7 +88,7 @@ else %se ci troviamo ad un tempo maggiore di tf siamo passati a descrivere
         sin(gamma) cos(gamma)]; %& pi %matrice di rotazione per rimetterci nelle condizioni
     %per la pianificazione della traiettoria con centro 'c2' e raggio 'r2'
 
-    B_1phi=[phi_f;phi_i;0;0]; %vettore termini noti per l'orientamento
+    B_1phi=[phi_i;phi_f;0;0]; %vettore termini noti per l'orientamento
     a_1phi=inv(A_1)*B_1phi; %coefficienti legge oraria orientamento
     s_phi=a_1phi(1)*t^3+a_1phi(2)*t^2+a_1phi(3)*t+a_1phi(4); %legge oraria orientamento
     sdot_phi=3*a_1phi(1)*t^2+2*a_1phi(2)*t+a_1phi(3); %derivata legge oraria orientamento
@@ -98,13 +98,14 @@ else %se ci troviamo ad un tempo maggiore di tf siamo passati a descrivere
         XYd=(c2'+R1*[r2*cos(s/r2) r2*sin(s/r2)]')'; %x desiderata
         XYddot=(R1*[-sin(s/r2) cos(s/r2)]')';
 
-        phi_e=phi_f+(s_phi/norm(phi_f-phi_i))*(phi_i-phi_f); %phi desiderata
-        phi_et=(sdot_phi/norm(phi_f-phi_i))*(phi_i-phi_f);
+        phi_e=phi_f+(s_phi/norm(phi_i-phi_f))*(phi_i-phi_f); %phi desiderata
+        phi_et=(sdot_phi/norm(phi_i-phi_f))*(phi_i-phi_f);
+        
         else %altrimenti rimaniamo alla configurazione da cui siamo partiti ovvero nel punto B
         XYd=p_i;
         XYddot=[0;0];
         phi_e=phi_i;
-        phi_et=[0;0];
+        phi_et=0;
         end
     end 
 
