@@ -13,9 +13,9 @@ p_i=u(3:4); %punto iniziale per il primo tratto, coincide con il punto B
 ti=u(5); %tempo iniziale
 tf=u(6); %tempo finale per il primo tratto
 tf2=u(7); %tempo finale per il secondo tratto
-t=u(10); %variabile temporale
 phi_i=u(8); %phi iniziale per il primo tratto, ovvero in B
 phi_f=u(9); %phi finale per il primo tratto, ovvero in A
+t=u(10); %variabile temporale
 
 alfa_2=deg2rad(341); %angolo di rotazione per il primo tratto
  beta=deg2rad(302);
@@ -48,7 +48,7 @@ if t<=tf %se ci troviamo ad un tempo inferiore di tf, dobbiamo pianificare
     s_phi=a_2phi(1)*t^3+a_2phi(2)*t^2+a_2phi(3)*t+a_2phi(4); %legge oraria orientamento
     sdot_phi=3*a_2phi(1)*t^2+2*a_2phi(2)*t+a_2phi(3); %derivata legge oraria orientamento
 
-    if t<ti %se ci troviamo ad un tempo inferiore a quello iniziale allora ci troviamo nella
+    if t<=ti %se ci troviamo ad un tempo inferiore a quello iniziale allora ci troviamo nella
         %configurazione iniziale sia per la posizione che per l'orientamento
         XYd=p_i;
         XYddot=[0;0];

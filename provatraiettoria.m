@@ -28,7 +28,7 @@ plot(t',a')
 
 %% Prova con toad
 t=(0:0.1:20);
-u=[20 20 30 20 0 10 20 t 0 pi/6]; 
+u=[20 20 30 20 0 10 20 0 pi/6 t]; 
 % per come è scritto il codice dovremmo invertire i pedici
 c1=[25 49.5];
 c2=[25 11];
