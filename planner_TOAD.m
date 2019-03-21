@@ -17,8 +17,8 @@ phi_i=u(8); %phi iniziale per il primo tratto, ovvero in B
 phi_f=u(9); %phi finale per il primo tratto, ovvero in A
 t=u(10); %variabile temporale
 
-alfa_2=deg2rad(341); %angolo di rotazione per il primo tratto
- beta=deg2rad(302);
+alfa_2=deg2rad(320.95); %angolo di rotazione per il primo tratto
+ beta=deg2rad(300);
 
 if t<=tf %se ci troviamo ad un tempo inferiore di tf, dobbiamo pianificare
     %la traiettoria circolare del primo tratto, con raggio 'r1' e centro
@@ -35,7 +35,7 @@ if t<=tf %se ci troviamo ad un tempo inferiore di tf, dobbiamo pianificare
     s=a_2(1)*t^3+a_2(2)*t^2+a_2(3)*t+a_2(4); %legge oraria della traiettoria
     sdot=3*a_2(1)*t^2+2*a_2(2)*t+a_2(3); %derivata della legge oraria
     
-    th=deg2rad(-80.5);
+    th=deg2rad(-70.47);
      
     R=[cos(th) -sin(th);
         sin(th) cos(th)];
@@ -57,8 +57,8 @@ if t<=tf %se ci troviamo ad un tempo inferiore di tf, dobbiamo pianificare
     else
         if t<=tf %se ci troviamo tra ti e tf allora definisco la traiettoria
             %circolare e l'orientamento secondo una legge lineare con s_phi:
-        XYd=(c1'+R*[r1*cos(s/r1) r1*sin(s/r1)]')'; %è la x desiderata
-        XYddot=(R*[-sin(s/r1) cos(s/r1)]')';
+        XYd=(c1'+R*[r1*cos(s/r1); r1*sin(s/r1)])'; %è la x desiderata
+        XYddot=(R*[-sin(s/r1); cos(s/r1)])';
 
         phi_e=phi_i+(s_phi/norm(phi_f-phi_i))*(phi_f-phi_i); %è la phi desiderata
         phi_et=(sdot_phi/norm(phi_f-phi_i))*(phi_f-phi_i);
@@ -82,7 +82,7 @@ else %se ci troviamo ad un tempo maggiore di tf siamo passati a descrivere
     s=a_1(1)*t^3+a_1(2)*t^2+a_1(3)*t+a_1(4); %legge oraria traiettoria
     sdot=3*a_1(1)*t^2+2*a_1(2)*t+a_1(3); %derivata legge oraria
     
-     gamma=deg2rad(119);
+     gamma=deg2rad(120);
     
     R1=[cos(gamma) -sin(gamma);
         sin(gamma) cos(gamma)]; %& pi %matrice di rotazione per rimetterci nelle condizioni
@@ -95,8 +95,8 @@ else %se ci troviamo ad un tempo maggiore di tf siamo passati a descrivere
 
         if t<=tf2 %se ci troviamo ad un tempo inferiore di tf2 andiamo a pianificare la
             %traiettoria ed orientamento:
-        XYd=(c2'+R1*[r2*cos(s/r2) r2*sin(s/r2)]')'; %x desiderata
-        XYddot=(R1*[-sin(s/r2) cos(s/r2)]')';
+        XYd=(c2'+R1*[r2*cos(s/r2); r2*sin(s/r2)])'; %x desiderata
+        XYddot=(R1*[-sin(s/r2); cos(s/r2)])';
 
         phi_e=phi_f+(s_phi/norm(phi_i-phi_f))*(phi_i-phi_f); %phi desiderata
         phi_et=(sdot_phi/norm(phi_i-phi_f))*(phi_i-phi_f);
