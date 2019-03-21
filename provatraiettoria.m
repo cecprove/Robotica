@@ -3,11 +3,11 @@ t=(0:0.1:20);
 u=[20 20 30 20 0 10 20 0 pi/6 0]; % posizione iniziale, posizione finale, tempo iniziale
 % per il primo tratto, trempo finale per il primo tratto, tempo finale,
 % orientamento iniziale , orientamento finale, variabile tempo
-% per come è scritto il codice dovremmo invertire i pedici
-c1=[25 34.1];
-c2=[25 11];
-r1=15;
-r2=10;
+% per come Ã¨ scritto il codice dovremmo invertire i pedici
+c1=[25 20];
+c2=[25 15.1];
+r1=5;
+r2=7;
 for i=1:length(t)
     u(10)=t(i);
     [xd(i).traiettoria,xd(i).derivata,phi(i).orientamento,phi(i).derivata]=...
