@@ -17,8 +17,8 @@ phi_i=u(8); %phi iniziale per il primo tratto, ovvero in B
 phi_f=u(9); %phi finale per il primo tratto, ovvero in A
 t=u(10); %variabile temporale
 
-alfa_2=deg2rad(320.95); %angolo di rotazione per il primo tratto
- beta=deg2rad(300);
+alfa_2=deg2rad(180); %angolo di rotazione per il primo tratto
+ beta=deg2rad(268.84);
 
 if t<=tf %se ci troviamo ad un tempo inferiore di tf, dobbiamo pianificare
     %la traiettoria circolare del primo tratto, con raggio 'r1' e centro
@@ -35,7 +35,7 @@ if t<=tf %se ci troviamo ad un tempo inferiore di tf, dobbiamo pianificare
     s=a_2(1)*t^3+a_2(2)*t^2+a_2(3)*t+a_2(4); %legge oraria della traiettoria
     sdot=3*a_2(1)*t^2+2*a_2(2)*t+a_2(3); %derivata della legge oraria
     
-    th=deg2rad(-70.47);
+    th=deg2rad(0);
      
     R=[cos(th) -sin(th);
         sin(th) cos(th)];
@@ -57,12 +57,12 @@ if t<=tf %se ci troviamo ad un tempo inferiore di tf, dobbiamo pianificare
     else
         if t<=tf %se ci troviamo tra ti e tf allora definisco la traiettoria
             %circolare e l'orientamento secondo una legge lineare con s_phi:
-        XYd=(c1'+R*[r1*cos(s/r1); r1*sin(s/r1)])'; %è la x desiderata
+        XYd=(c1'+R*[r1*cos(s/r1); r1*sin(s/r1)])'; %Ã¨ la x desiderata
         XYddot=(R*[-sin(s/r1); cos(s/r1)])';
 
-        phi_e=phi_i+(s_phi/norm(phi_f-phi_i))*(phi_f-phi_i); %è la phi desiderata
+        phi_e=phi_i+(s_phi/norm(phi_f-phi_i))*(phi_f-phi_i); %Ã¨ la phi desiderata
         phi_et=(sdot_phi/norm(phi_f-phi_i))*(phi_f-phi_i);
-    %     else %altrimenti rimango alla situazione finale, in realtà si può togliere questa parte
+    %     else %altrimenti rimango alla situazione finale, in realtÃ  si puÃ² togliere questa parte
     %     XYd=pf;
     %     XYddot=[0;0];
     %     phi_e=phi_f;
@@ -82,7 +82,7 @@ else %se ci troviamo ad un tempo maggiore di tf siamo passati a descrivere
     s=a_1(1)*t^3+a_1(2)*t^2+a_1(3)*t+a_1(4); %legge oraria traiettoria
     sdot=3*a_1(1)*t^2+2*a_1(2)*t+a_1(3); %derivata legge oraria
     
-     gamma=deg2rad(120);
+     gamma=deg2rad(135.58);
     
     R1=[cos(gamma) -sin(gamma);
         sin(gamma) cos(gamma)]; %& pi %matrice di rotazione per rimetterci nelle condizioni
