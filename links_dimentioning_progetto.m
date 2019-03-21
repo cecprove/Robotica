@@ -41,15 +41,15 @@ theta=[0;
 %colonne) per ogni istante di tempo e poi per l'orientamento abbiamo theta
 
 %Grandezza minima/massima dei link
-link_lim=[3 20; %
-    3 20;
-    3 20; 
-    3 20];% 1 20
+link_lim=[5 18; %
+    5 18;
+    5 18; 
+    5 18];% 1 20
 %& Scelgo le lunghezze massime e minime dei miei link . Queste sono fissate
 %( le lunghezze sono in cm) Dobbiamo lascirlse cosi come sono
 
 %Range di variazione dei link nel metodo di ottimizzazione
-resolution=0.5;
+resolution=1;
 %& corrisponde al valore minimo che l'algorimo andrà a testare in base al
 %workspace che ho. Se non va bene la combinazione va scartata. per
 %scegliere quale tra le varie combinazione utilizzo una funzione di costo
